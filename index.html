@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>A Message for Didi 💛 — One Piece</title>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --parch:#f2e4b8;
+  --parch2:#e8d498;
+  --parch3:#d4b878;
+  --ink:#2c1206;
+  --ink2:#4a2510;
+  --navy:#0d1b2a;
+  --gold:#d4930a;
+  --gold2:#f0b429;
+  --red:#b8191a;
+  --fire1:#ff6b35;
+  --fire2:#ffb347;
+  --sanji:#f5c518;
+  --cream:#fdf8ed;
+}
+
+body{
+  font-family:'Crimson Pro',serif;
+  background:var(--navy);
+  min-height:100vh;
+  overflow-x:hidden;
+  color:var(--ink);
+}
+.ocean-bg{
+  position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 50% 120%, #1a4a6e 0%, #0a1a2e 50%, #060d18 100%);
+  overflow:hidden;
+}
+.wave{
+  position:absolute;bottom:0;left:-100%;width:300%;height:200px;
+  border-radius:45% 55% 0 0;
+  animation:waveMove linear infinite;
+  opacity:0.12;
+}
+.wave1{background:#1a6a9e;animation-duration:8s;animation-delay:0s;height:160px}
+.wave2{background:#2a5a8e;animation-duration:11s;animation-delay:-3s;height:130px}
+.wave3{background:#0d3a6e;animation-duration:14s;animation-delay:-6s;height:100px}
+@keyframes waveMove{from{transform:translateX(0)}to{transform:translateX(33.33%)}}
+.star-field{position:absolute;inset:0;}
+.star{position:absolute;background:white;border-radius:50%;animation:twinkle ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:0.2}50%{opacity:1}}
+.screen{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2rem 1rem 3rem;
+}
+.screen.active{display:flex}
+.poster{
+  background:var(--parch);
+  border:4px solid var(--parch3);
+  border-radius:6px;
+  max-width:400px;width:100%;
+  padding:0;
+  position:relative;
+  box-shadow:
+    0 0 0 8px var(--parch2),
+    0 0 0 12px var(--parch3),
+    0 20px 60px rgba(0,0,0,0.7);
+  animation:posterFloat 4s ease-in-out infinite;
+}
+@keyframes posterFloat{0%,100%{transform:rotate(-1deg) translateY(0)}50%{transform:rotate(1deg) translateY(-8px)}}
+.poster-inner{padding:1.5rem 1.5rem 1.8rem;text-align:center;}
+.wanted-text{
+  font-family:'Pirata One',cursive;
+  font-size:clamp(2.2rem,8vw,3rem);
+  color:var(--red);
+  letter-spacing:0.12em;
+  text-shadow:2px 2px 0 rgba(0,0,0,0.2);
+  line-height:1;
+  border-bottom:3px double var(--parch3);
+  padding-bottom:0.4rem;
+  margin-bottom:0.5rem;
+}
+.poster-sub{
+  font-family:'IM Fell English',serif;
+  font-size:0.78rem;
+  letter-spacing:0.22em;
+  color:var(--ink2);
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.sanji-frame{
+  border:3px solid var(--parch3);
+  background:linear-gradient(160deg,#f9eed6,#ecdcb0);
+  margin:0 auto 1rem;
+  width:clamp(160px,45vw,200px);
+  height:clamp(200px,55vw,250px);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:visible;
+  cursor:pointer;
+}
+.sanji-frame::before,.sanji-frame::after{
+  content:'✦';
+  position:absolute;
+  color:var(--gold);
+  font-size:18px;
+}
+.sanji-frame::before{top:-10px;left:-10px}
+.sanji-frame::after{bottom:-10px;right:-10px}
+.speech-bubble{
+  position:absolute;
+  top:-52px;left:50%;transform:translateX(-50%);
+  background:white;
+  border:2px solid var(--parch3);
+  border-radius:12px;
+  padding:6px 12px;
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:0.82rem;
+  color:var(--ink);
+  white-space:nowrap;
+  opacity:0;
+  transition:opacity 0.3s;
+  pointer-events:none;
+  box-shadow:0 3px 10px rgba(0,0,0,0.15);
+}
+.speech-bubble::after{
+  content:'';position:absolute;
+  bottom:-10px;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;
+  border-top-color:var(--parch3);
+}
+.sanji-frame:hover .speech-bubble{opacity:1}
+.poster-title{
+  font-family:'Pirata One',cursive;
+  font-size:clamp(1rem,3.5vw,1.3rem);
+  color:var(--ink);
+  letter-spacing:0.05em;
+  margin-bottom:0.3rem;
+}
+.poster-reward{
+  font-family:'IM Fell English',serif;
+  font-size:0.85rem;
+  color:var(--ink2);
+  margin-bottom:1.2rem;
+  font-style:italic;
+}
+.reward-val{
+  font-family:'Pirata One',cursive;
+  font-size:1.4rem;
+  color:var(--red);
+  display:block;
+  margin-top:2px;
+}
+.open-btn{
+  font-family:'Pirata One',cursive;
+  font-size:1rem;
+  letter-spacing:0.08em;
+  background:var(--red);
+  color:#fff;
+  border:none;
+  padding:10px 28px;
+  border-radius:3px;
+  cursor:pointer;
+  box-shadow:0 4px 14px rgba(180,25,26,0.5);
+  transition:transform 0.2s,box-shadow 0.2s;
+  position:relative;overflow:hidden;
+}
+.open-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.15) 50%,transparent 100%);
+  transform:translateX(-100%);
+  transition:transform 0.4s;
+}
+.open-btn:hover{transform:scale(1.06);box-shadow:0 6px 20px rgba(180,25,26,0.6)}
+.open-btn:hover::before{transform:translateX(100%)}
+.jolly{position:absolute;opacity:0.12;font-size:3.5rem}
+.jolly-tl{top:6px;left:8px;transform:rotate(-10deg)}
+.jolly-br{bottom:6px;right:8px;transform:rotate(10deg)}
+.parchment{
+  background:var(--cream);
+  border:2px solid var(--parch3);
+  border-radius:4px;
+  max-width:640px;width:100%;
+  padding:clamp(2rem,6vw,3.5rem) clamp(1.8rem,7vw,4rem);
+  position:relative;
+  box-shadow:0 0 0 6px var(--parch),0 0 0 8px var(--parch3),0 24px 70px rgba(0,0,0,0.6);
+}
+.parchment::before{
+  content:'';position:absolute;
+  inset:0;border-radius:4px;
+  background:
+    repeating-linear-gradient(transparent,transparent 31px,rgba(190,150,100,0.18) 31px,rgba(190,150,100,0.18) 32px);
+  background-position:0 50px;
+  pointer-events:none;
+}
+.parch-margin{
+  position:absolute;left:68px;top:0;bottom:0;
+  width:1.5px;background:rgba(190,130,90,0.3);
+}
+.letter-header{
+  text-align:center;
+  margin-bottom:2rem;
+  position:relative;
+}
+.skull-divider{
+  display:flex;align-items:center;gap:12px;
+  margin:0.8rem 0;
+}
+.skull-divider::before,.skull-divider::after{
+  content:'';flex:1;height:1px;background:var(--parch3);
+}
+.skull-divider span{font-size:1rem;color:var(--gold)}
+.letter-h1{
+  font-family:'Pirata One',cursive;
+  font-size:clamp(1.8rem,5vw,2.6rem);
+  color:var(--ink);
+  letter-spacing:0.04em;
+  line-height:1.1;
+}
+.letter-date{
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:0.85rem;
+  color:var(--ink2);
+  text-align:right;
+  margin-bottom:1.5rem;
+  position:relative;
+}
+.greeting{
+  font-family:'Pirata One',cursive;
+  font-size:clamp(1.3rem,4vw,1.7rem);
+  color:var(--red);
+  margin-bottom:1.6rem;
+  position:relative;
+}
+.para{
+  font-size:clamp(0.95rem,2.5vw,1.08rem);
+  line-height:2.05;
+  color:var(--ink);
+  margin-bottom:1.4rem;
+  position:relative;
+  opacity:0;transform:translateY(18px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.para.visible{opacity:1;transform:none}
+.para em{font-style:italic;color:var(--red)}
+.para strong{font-weight:600;color:var(--gold)}
+.para .ifs{font-weight:600;color:#1a5fa8}
+.para .sanji-ref{font-style:italic;color:var(--ink2)}
+.anchor-div{
+  text-align:center;font-size:1.2rem;
+  letter-spacing:14px;color:var(--parch3);
+  margin:1.2rem 0;
+  opacity:0;transition:opacity 0.8s;
+}
+.anchor-div.visible{opacity:1}
+.sign{
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:clamp(1rem,2.8vw,1.25rem);
+  color:var(--ink);
+  margin-top:0.5rem;
+  position:relative;
+  opacity:0;transition:opacity 0.8s ease 0.3s;
+}
+.sign.visible{opacity:1}
+.ifs-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#dbeafe;color:#1d4ed8;
+  border:1.5px solid #93c5fd;
+  border-radius:50px;padding:6px 18px;
+  font-size:0.85rem;font-weight:600;
+  font-family:'Crimson Pro',serif;
+  opacity:0;transition:opacity 0.8s;
+  margin:0.5rem 0;
+}
+.globe-spin{display:inline-block;animation:gspin 5s linear infinite}
+@keyframes gspin{to{transform:rotate(360deg)}}
+.forgive-wrap{
+  margin-top:3rem;text-align:center;
+  opacity:0;transform:translateY(20px);
+  transition:opacity 0.8s,transform 0.8s;
+}
+.forgive-wrap.visible{opacity:1;transform:none}
+.forgive-q{
+  font-family:'Pirata One',cursive;
+  font-size:clamp(1.2rem,3.5vw,1.7rem);
+  color:var(--ink);
+  margin-bottom:0.5rem;
+}
+.forgive-sanji-q{
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:0.92rem;color:var(--ink2);
+  margin-bottom:1.8rem;
+}
+
+.btn-fire{
+  font-family:'Pirata One',cursive;
+  font-size:1.05rem;letter-spacing:0.06em;
+  background:var(--fire1);color:white;
+  border:none;padding:13px 32px;
+  border-radius:4px;cursor:pointer;
+  box-shadow:0 6px 20px rgba(255,107,53,0.5);
+  transition:transform 0.2s,box-shadow 0.2s;
+  position:relative;overflow:hidden;
+}
+.btn-fire::before{
+  content:'🔥';
+  position:absolute;left:-30px;top:50%;transform:translateY(-50%);
+  font-size:1.2rem;
+  transition:left 0.3s;
+}
+.btn-fire:hover{transform:scale(1.07);box-shadow:0 10px 30px rgba(255,107,53,0.7)}
+.btn-fire:hover::before{left:8px}
+
+.btn-nah{
+  font-family:'IM Fell English',serif;
+  font-style:italic;
+  font-size:1rem;color:var(--ink2);
+  background:transparent;
+  border:1.5px solid var(--parch3);
+  padding:13px 24px;border-radius:4px;
+  cursor:pointer;transition:all 0.15s;
+}
+
+.btn-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.celebrate-card{
+  background:var(--cream);
+  border:3px solid var(--parch3);
+  border-radius:6px;
+  max-width:500px;width:100%;
+  text-align:center;
+  padding:clamp(2rem,6vw,3.5rem);
+  box-shadow:0 0 0 6px var(--parch),0 0 0 8px var(--gold),0 24px 70px rgba(0,0,0,0.5);
+  position:relative;overflow:hidden;
+}
+.ship-scene{
+  height:70px;position:relative;overflow:hidden;
+  margin-bottom:1.5rem;border-radius:4px;
+  background:linear-gradient(180deg,#87ceeb 0%,#4a9eca 60%,#1a6a9e 100%);
+}
+.ship{
+  position:absolute;bottom:14px;
+  font-size:2.4rem;
+  animation:sailAcross 3s ease-in-out forwards;
+}
+@keyframes sailAcross{
+  0%{left:-80px;opacity:0}
+  15%{opacity:1}
+  85%{opacity:1}
+  100%{left:110%;opacity:0}
+}
+.wave-small{
+  position:absolute;bottom:0;width:200%;height:20px;
+  background:rgba(255,255,255,0.25);
+  border-radius:50% 50% 0 0 / 100% 100% 0 0;
+  animation:waveSmall 2s linear infinite;
+}
+@keyframes waveSmall{from{transform:translateX(-50%)}to{transform:translateX(0%)}}
+
+.cel-title{
+  font-family:'Pirata One',cursive;
+  font-size:clamp(2rem,7vw,3rem);
+  color:var(--red);letter-spacing:0.06em;
+  line-height:1.1;margin-bottom:0.6rem;
+}
+.cel-sub{
+  font-size:clamp(0.95rem,2.5vw,1.1rem);
+  line-height:1.9;color:var(--ink2);
+  margin-bottom:1.5rem;
+}
+.flag-bar{
+  display:flex;width:160px;height:7px;border-radius:99px;overflow:hidden;
+  margin:1.5rem auto 0;
+}
+.flag-bar div{flex:1}
+
+.sanji-cel{
+  font-size:3.5rem;
+  animation:celebSpin 0.8s ease-in-out;
+  display:inline-block;
+}
+@keyframes celebSpin{
+  0%{transform:rotate(0) scale(0.5)}
+  50%{transform:rotate(-20deg) scale(1.3)}
+  100%{transform:rotate(0) scale(1)}
+}
+#confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:200}
+.nav-dots{
+  display:flex;gap:10px;justify-content:center;
+  margin-top:1.8rem;position:relative;z-index:2;
+}
+.ndot{
+  width:9px;height:9px;border-radius:50%;
+  background:rgba(255,255,255,0.2);
+  transition:background 0.4s,transform 0.4s;
+}
+.ndot.on{background:var(--gold);transform:scale(1.4)}
+</style>
+</head>
+<body>
+<div class="ocean-bg">
+  <div class="wave wave1"></div>
+  <div class="wave wave2"></div>
+  <div class="wave wave3"></div>
+  <div class="star-field" id="stars"></div>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+<div class="screen active" id="s1">
+  <div class="poster">
+    <div class="jolly jolly-tl">☠</div>
+    <div class="jolly jolly-br">☠</div>
+    <div class="poster-inner">
+      <div class="wanted-text">WANTED</div>
+      <div class="poster-sub">by the Sibling Pirates</div>
+      <div class="sanji-frame" onclick="showQuote(this)" title="Click Sanji!">
+        <div class="speech-bubble" id="bubble">"Even a fool must bow before a lady's heart."</div>
+        <svg viewBox="0 0 200 260" width="170" height="220" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="255" rx="45" ry="8" fill="rgba(0,0,0,0.18)"/>
+          <rect x="75" y="200" width="22" height="55" rx="9" fill="#1a1a2e"/>
+          <rect x="103" y="200" width="22" height="55" rx="9" fill="#1a1a2e"/>
+          <ellipse cx="86" cy="254" rx="17" ry="7" fill="#0a0a18"/>
+          <ellipse cx="114" cy="254" rx="17" ry="7" fill="#0a0a18"/>
+          <rect x="62" y="140" width="76" height="68" rx="12" fill="#1a1a2e"/>
+          <path d="M88 140 L100 146 L112 140 L108 190 L92 190 Z" fill="white"/>
+          <path d="M62 140 L88 158 L88 140 Z" fill="#14142a"/>
+          <path d="M138 140 L112 158 L112 140 Z" fill="#14142a"/>
+          <polygon points="100,149 95,172 100,182 105,172" fill="#0a0a18"/>
+          <circle cx="100" cy="162" r="2.5" fill="#888"/>
+          <circle cx="100" cy="175" r="2.5" fill="#888"/>
+          <rect x="30" y="148" width="38" height="17" rx="8" fill="#1a1a2e" transform="rotate(25 49 156)"/>
+          <rect x="132" y="148" width="38" height="17" rx="8" fill="#1a1a2e" transform="rotate(-25 151 156)"/>
+          <circle cx="28" cy="178" r="12" fill="#fcd5b0"/>
+          <circle cx="172" cy="178" r="12" fill="#fcd5b0"/>
+          <rect x="87" y="118" width="26" height="26" rx="5" fill="#fcd5b0"/>
+          <ellipse cx="100" cy="88" rx="46" ry="50" fill="#fcd5b0"/>
+          <ellipse cx="54" cy="90" rx="9" ry="11" fill="#f0c4a0"/>
+          <ellipse cx="100" cy="58" rx="50" ry="38" fill="#f5c518"/>
+          <path d="M54 68 Q38 55 45 35 Q58 10 100 8 Q142 10 155 35 Q162 55 146 68" fill="#f5c518"/>
+          <path d="M53 72 Q60 40 80 28 Q100 18 116 26 Q130 36 128 56 Q124 70 112 82 Q90 96 66 92 Q50 88 50 76 Z" fill="#f5c518"/>
+          <path d="M76 20 Q95 12 112 22" stroke="#ffd93d" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"/>
+          <ellipse cx="128" cy="86" rx="11" ry="10" fill="white"/>
+          <circle cx="128" cy="86" r="6.5" fill="#3d2010"/>
+          <circle cx="128" cy="86" r="3.5" fill="#160a00"/>
+          <circle cx="131" cy="83" r="2.2" fill="white"/>
+          <circle cx="73" cy="82" r="2" fill="#d4a020" opacity="0.35"/>
+          <path d="M118 73 Q124 67 131 68 Q137 69 140 74" stroke="#8b5e14" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          <path d="M140 74 Q145 69 140 65 Q136 62 139 70" stroke="#8b5e14" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <path d="M108 98 Q112 107 109 111" stroke="#c9906a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          <path d="M97 118 Q103 125 116 121" stroke="#c07040" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+          <rect x="115" y="118" width="30" height="4.5" rx="2" fill="#f5f0dc"/>
+          <rect x="143" y="117" width="7" height="6.5" rx="1.5" fill="#f0a040" opacity="0.75"/>
+          <path d="M150 116 Q153 109 149 102 Q145 95 149 87" stroke="#bbb" stroke-width="1.5" fill="none" opacity="0.45" stroke-linecap="round"/>
+          <rect x="68" y="156" width="18" height="10" rx="2" fill="#252545" stroke="#333360" stroke-width="0.5"/>
+          <path d="M71 156 L76 151 L81 156" fill="#d4930a"/>
+        </svg>
+      </div>
+
+      <div class="poster-title">FORGIVENESS — WANTED</div>
+      <div class="poster-reward">
+        For one careless sarcastic remark<br/>
+        <span class="reward-val">Reward: Didi's Smile 💛</span>
+      </div>
+
+      <button class="open-btn" onclick="goToLetter()">⚓ Read the Letter ⚓</button>
+    </div>
+  </div>
+  <div class="nav-dots"><div class="ndot on"></div><div class="ndot"></div><div class="ndot"></div></div>
+</div>
+<div class="screen" id="s2">
+  <div class="parchment">
+    <div class="parch-margin"></div>
+    <div class="letter-date" id="ldate"></div>
+    <div class="letter-header">
+      <div class="skull-divider"><span>⚓ ☠ ⚓</span></div>
+      <div class="letter-h1">A Kalota Crew Member's Apology</div>
+      <div class="skull-divider"><span>⚓ ☠ ⚓</span></div>
+    </div>
+
+    <div class="greeting">My dearest Babyy diduuu </div>
+
+    <p class="para" id="lp1">
+      I messed up,a stupid thoughtless sarcastic comment slipped out and it hit you right in the chest like a <em>poorly aimed kick,</em> not the Diable Jambe kind, just the clumsy kind. I never meant it that way, and I'm truly, deeply sorry.
+    </p>
+    <p class="para" id="lp2">
+      You know what Sanji always says — <span class="sanji-ref">"A cook only has worth when he can feed the people he cares about."</span> Well, I failed to feed you with the warmth and respect you deserve. That lands on me. 🙏
+    </p>
+    <div class="anchor-div" id="ad1">⚓ · · · ⚓</div>
+    <p class="para" id="lp3">
+      Here is what I actually see when I look at you: someone who chose the <em>Grand Line</em> when everyone else was sailing the East Blue. <span class="ifs">UPSC — Indian Foreign Service</span> — that's not just an exam. That's you deciding you want to stand for <strong>an entire nation</strong> on the world stage.
+    </p>
+    <p class="para" id="lp4">
+      Sanji spent his whole life chasing the <strong>All Blue</strong> — a mythical sea where fish from all oceans swim together. Your dream is your All Blue babyy Didi. The world's capitals, the UN halls, peace talks and trade routes — <em>that is the sea you are sailing toward.</em> And it is breathtaking.
+    </p>
+    <div class="anchor-div" id="ad2">🌊 · 🗺️ · 🌊</div>
+    <p class="para" id="lp5">
+      Employment is not a measure of worth. It never was. You are doing something that takes the kind of <em>patience, discipline, and courage</em> that most people quietly admire from a distance and never attempt. Every page you study is a step closer to the All Blue.
+    </p>
+    <p class="para" id="lp6">
+      One day — and I know this day is coming — I am going to read about <strong>India's top diplomat</strong> doing something remarkable, and I'm going to tell everyone with tears in my eyes: <em>that's my Didi,that's my babyyy diduu, That's her.</em> I will be the most proud sibling alive.
+    </p>
+    <div class="anchor-div" id="ad3">🇮🇳 · ⚓ · 🇮🇳</div>
+    <p class="para" id="lp7">
+      Even Sanji, the greatest gentleman of the Straw Hat crew, would bow to your dedication. And I — your much sillier sibling — bow even deeper. Will you forgive me? 🥺
+    </p>
+
+    <div class="ifs-badge" id="ifsbadge">
+      <span class="globe-spin">🌍</span> Future IFS Officer — India's pride on the world stage
+    </div>
+
+    <div class="sign" id="lsign">
+      — With all my love, pride &amp; a thousand apologies,<br/>
+      <span style="font-size:1.35rem;font-family:'Pirata One',cursive;">Your Kalota kaluva bhaii 🤍</span>
+    </div>
+  </div>
+  <div class="forgive-wrap" id="fwrap">
+    <div class="parchment" style="max-width:480px;margin-top:1.5rem;text-align:center">
+      <div class="parch-margin"></div>
+      <div style="font-size:0.82rem;font-family:'IM Fell English',serif;font-style:italic;color:var(--ink2);margin-bottom:0.6rem">— Sanji whispers to Didi —</div>
+      <div style="font-family:'Pirata One',cursive;font-size:1rem;color:var(--gold);margin-bottom:1.2rem;letter-spacing:0.04em">"A real nakama always comes back with an apology."</div>
+      <div class="forgive-q">So, Didi... do you forgive your crew member? 🥺</div>
+      <div style="height:12px"></div>
+      <div class="btn-row">
+        <button class="btn-fire" onclick="celebrate()">🔥 Yosh! Forgiven! 🔥</button>
+        <button class="btn-nah" id="bnah" onmouseover="runAway(this)" onclick="runAway(this)">Not yet 😤</button>
+      </div>
+    </div>
+  </div>
+  <div class="nav-dots" style="margin-bottom:2rem"><div class="ndot"></div><div class="ndot on"></div><div class="ndot"></div></div>
+</div>
+<div class="screen" id="s3">
+  <div class="celebrate-card">
+    <div class="ship-scene">
+      <div class="wave-small"></div>
+      <div class="ship" id="ship">⛵</div>
+    </div>
+    <div class="sanji-cel" id="sanjiCel">🎉</div>
+    <div class="cel-title">NAKAMA AGAIN! 💛</div>
+    <div class="cel-sub">
+      The Straw Hat crew is whole once more. 🏴‍☠️<br/>
+      Biggest tightest huggies to my IFS diduuuuu.<br/>
+      The Grand Line awaits you — and i will be<br/>
+      the proudest crew member all the way.I love youuuuuuuuuuuuuuuuuuuu moreee moreee moreeee 🌊
+    </div>
+
+    <div class="ifs-badge" style="font-size:0.9rem;padding:8px 20px;margin:0 auto">
+      <span class="globe-spin">🌍</span> Future IFS Officer — setting sail for the All Blue 🇮🇳
+    </div>
+
+    <div class="flag-bar">
+      <div style="background:#ff9933"></div>
+      <div style="background:#fff;border:1px solid #ddd"></div>
+      <div style="background:#138808"></div>
+    </div>
+
+    <div style="margin-top:1.5rem;font-family:'Pirata One',cursive;font-size:0.95rem;color:var(--gold);letter-spacing:0.1em">
+      ⚓ &nbsp; SAIL ON &nbsp; ⚓
+    </div>
+  </div>
+  <div class="nav-dots"><div class="ndot"></div><div class="ndot"></div><div class="ndot on"></div></div>
+</div>
+
+<script>
+const sf=document.getElementById('stars');
+for(let i=0;i<80;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  const sz=Math.random()*2.5+0.5;
+  s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;animation-duration:${1.5+Math.random()*3}s;animation-delay:${Math.random()*3}s`;
+  sf.appendChild(s);
+}
+const mo=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const n=new Date();
+document.getElementById('ldate').textContent=`${n.getDate()} ${mo[n.getMonth()]} ${n.getFullYear()} — Somewhere on the Grand Line`;
+const quotes=[
+  '"Even a fool must bow before a lady\'s heart."',
+  '"Forgive him, Didi. He cooks with love at least."',
+  '"A nakama\'s apology is the rarest treasure."',
+  '"Women are to be cherished — always." 🌹',
+  '"Mellorine~! I mean... please forgive him!"',
+];
+let qi=0;
+function showQuote(el){
+  const b=el.querySelector('.speech-bubble');
+  b.textContent=quotes[qi%quotes.length];
+  b.style.opacity='1';
+  qi++;
+  setTimeout(()=>b.style.opacity='0',2600);
+}
+function goToLetter(){
+  document.getElementById('s1').classList.remove('active');
+  document.getElementById('s2').classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  revealLetter();
+}
+function revealLetter(){
+  const ids=['lp1','lp2','ad1','lp3','lp4','ad2','lp5','lp6','ad3','lp7','ifsbadge','lsign','fwrap'];
+  const delays=[100,600,1000,1200,1800,2300,2500,3100,3700,3900,4300,4600,5200];
+  ids.forEach((id,i)=>{
+    setTimeout(()=>{
+      const el=document.getElementById(id);
+      if(!el)return;
+      el.classList.add('visible');
+      if(id==='ifsbadge')el.style.opacity='1';
+    },delays[i]);
+  });
+}
+let nm=0;
+const nahLines=['Not yet 😤','Still no! 😒','Nice try!','Sanji says no?','...ok fine 🙈'];
+function runAway(btn){
+  nm++;
+  const maxX=window.innerWidth-btn.offsetWidth-20;
+  const maxY=window.innerHeight-btn.offsetHeight-20;
+  btn.style.position='fixed';
+  btn.style.zIndex='500';
+  btn.style.left=Math.max(10,Math.random()*maxX)+'px';
+  btn.style.top=Math.max(10,Math.random()*maxY)+'px';
+  btn.style.transition='left 0.2s,top 0.2s';
+  if(nm<nahLines.length)btn.textContent=nahLines[nm];
+  if(nm>=6)btn.style.display='none';
+}
+function celebrate(){
+  document.getElementById('s2').classList.remove('active');
+  document.getElementById('s3').classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  shootConfetti();
+  setTimeout(shootConfetti,1000);
+  setTimeout(shootConfetti,2200);
+  const emojis=['🎉','💛','🔥','⚓','🎊','💛'];
+  let ei=0;
+  const sce=document.getElementById('sanjiCel');
+  const iv=setInterval(()=>{
+    sce.textContent=emojis[ei%emojis.length];
+    ei++;
+    if(ei>20)clearInterval(iv);
+  },400);
+}
+function shootConfetti(){
+  const cv=document.getElementById('confettiCanvas');
+  const ctx=cv.getContext('2d');
+  cv.width=window.innerWidth;cv.height=window.innerHeight;
+  const cols=['#f5c518','#d4930a','#c41e3a','#0d3a6e','#138808','#ff9933','#ff6b35','#ffd93d'];
+  const sh=['rect','circle','tri'];
+  const ps=[];
+  for(let i=0;i<160;i++){
+    ps.push({
+      x:Math.random()*cv.width,y:-30-Math.random()*cv.height*0.3,
+      size:5+Math.random()*9,col:cols[i%cols.length],
+      vx:(Math.random()-0.5)*5,vy:2+Math.random()*4.5,
+      rot:Math.random()*360,rv:(Math.random()-0.5)*7,
+      sh:sh[Math.floor(Math.random()*sh.length)]
+    });
+  }
+  let raf;
+  function loop(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    let alive=false;
+    ps.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;p.rot+=p.rv;p.vy+=0.07;
+      if(p.y<cv.height+30)alive=true;
+      const a=p.y<cv.height*0.7?1:1-(p.y-cv.height*0.7)/(cv.height*0.3);
+      ctx.save();ctx.globalAlpha=Math.max(0,a);
+      ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);
+      ctx.fillStyle=p.col;
+      if(p.sh==='rect'){ctx.fillRect(-p.size/2,-p.size/3,p.size,p.size*0.6);}
+      else if(p.sh==='circle'){ctx.beginPath();ctx.arc(0,0,p.size/2,0,Math.PI*2);ctx.fill();}
+      else{ctx.beginPath();ctx.moveTo(0,-p.size/2);ctx.lineTo(p.size/2,p.size/2);ctx.lineTo(-p.size/2,p.size/2);ctx.closePath();ctx.fill();}
+      ctx.restore();
+    });
+    if(alive)raf=requestAnimationFrame(loop);
+    else ctx.clearRect(0,0,cv.width,cv.height);
+  }
+  if(raf)cancelAnimationFrame(raf);
+  loop();
+}
+</script>
+</body>
+</html>
